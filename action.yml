@@ -11,13 +11,6 @@ runs:
   steps:
     - run: |
         export COMMIT_MESSAGE=$(git log -1 HEAD --pretty=format:%s)
-        echo "Actor: $GITHUB_ACTOR"
-        echo "Repo: $GITHUB_REPOSITORY"
-        echo "SHA: $GITHUB_SHA"
-        echo "Commit: $COMMIT_MESSAGE"
-        echo "Color: ${{ job.status == 'success' && 'good' || 'danger' }}"
-        echo "Build: ${{ github.run_number }}"
-        echo "Status: ${{ job.status }}"
         export PAYLOAD=$(jq -n \
           --arg author "$GITHUB_ACTOR" \
           --arg repo "$GITHUB_REPOSITORY" \
