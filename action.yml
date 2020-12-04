@@ -9,9 +9,8 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: export COMMIT_MESSAGE=$(git log -1 HEAD --pretty=format:%s)
-      shell: bash
     - run: |
+        export COMMIT_MESSAGE=$(git log -1 HEAD --pretty=format:%s)
         echo "Actor: $GITHUB_ACTOR"
         echo "Repo: $GITHUB_REPOSITORY"
         echo "SHA: $GITHUB_SHA"
