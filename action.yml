@@ -1,0 +1,21 @@
+name: 'Slack Build Notification'
+description: 'Sends a build notification to PressCentric/builds channel'
+runs:
+  using: "composite"
+  steps:
+    - run: export COMMIT_MESSAGE=$(git log -1 HEAD --pretty=format:%s)
+      shell: bash
+    - run: |
+        export SLACK_PAYLOAD=$(jq -n \
+          --arg author "$GITHUB_ACTOR" \
+          --arg repo "$GITHUB_REPOSITORY" \
+          --arg sha "$GITHUB_SHA" \
+          --arg commit "$COMMIT_MESSAGE" \
+          --arg color ${{ job.status == 'success' && 'good' || 'danger' }} \
+          --arg build ${{ github.run_number }} \
+          --arg status ${{ job.status }} \
+          '{username:"github",icon_url:"https://a.slack-edge.com/80588/img/plugins/github/service_36.png",attachments:[{mrkdwn_in:["text"],color:$color,author_name:$author,author_link:("http://github.com/" + $author),author_icon:("http://github.com/" + $author + ".png?size=32"),fallback:($repo + " build #" + $build + " " + $status),text:("*" + $repo + "* build #" + $build + " " + $status + " <https://github.com/" + $repo + "/commit/" + $sha + "/checks|(open log)>"),fields:[{value:$commit}]}]}')
+      shell: bash
+    - run: 'curl -X POST -H "Content-Type: application/json" -d "$SLACK_PAYLOAD" ${{ secrets.SLACK_WEBHOOK_BUILDS }}'
+      shell: bash
+
