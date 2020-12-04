@@ -8,9 +8,11 @@ Compared to other available slack notification actions uses bash shell calls ins
 
 Create an org-level secret `SLACK_WEBHOOK_BUILDS` with Slack [webhook](https://api.slack.com/messaging/webhooks) URL.
 
-Add the action call to your build script YAML:`
+Add the action call to your build script YAML and provide your Slack [webhook](https://api.slack.com/messaging/webhooks) URL:
 
 ```
 - name: Slack Notification  
   uses: PressCentric/Actions-Slack-Notify@v1
+  with:
+    webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
 ```
