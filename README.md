@@ -12,7 +12,7 @@ Add the action call to your build script YAML and provide your Slack [webhook](h
 
 ```
 - name: Slack notification  
-  uses: PressCentric/Actions-Slack-Notify@latest
+  uses: PressCentric/Actions-Slack-Notify@master
   with:
     webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
 ```

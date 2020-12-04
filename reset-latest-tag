@@ -1,6 +1,0 @@
-#!/bin/bash
-
-git push --delete origin latest
-git tag --delete latest
-git tag -a -m "latest" latest
-git push --follow-tags
