@@ -7,6 +7,6 @@ author_name:$author,
 author_link:("http://github.com/" + $author),
 author_icon:("http://github.com/" + $author + ".png?size=32"),
 fallback:($repo + " - " + $workflow + " - " + $branch + " - #" + $build + " " + $status),
-text:("*" + $repo + "* - " + $workflow + " - " + $branch + " #" + $build + " " + $status + " <https://github.com/" + $repo + "/commit/" + $sha + "/checks|(Open)>"),
+text:("*" + $repo + "* - " + $workflow + " - " + $branch + " - #" + $build + " " + $status + " <https://github.com/" + $repo + "/commit/" + $sha + "/checks|(Open)>"),
 footer:$commit
 }]}
