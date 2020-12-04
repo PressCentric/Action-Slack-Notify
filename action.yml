@@ -19,7 +19,7 @@ runs:
           --arg color ${{ job.status == 'success' && 'good' || 'danger' }} \
           --arg build ${{ github.run_number }} \
           --arg status ${{ job.status }} \
-          '{username:"github",icon_url:"https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",attachments:[{mrkdwn_in:["text"],color:$color,author_name:$author,author_link:("http://github.com/" + $author),author_icon:("http://github.com/" + $author + ".png?size=32"),fallback:($repo + " - #" + $build + " " + $status),text:("*" + $repo + "* build #" + $build + " " + $status + " <https://github.com/" + $repo + "/commit/" + $sha + "/checks|(Open)>"),fields:[{value:$commit}]}]}')
+          '{username:"github",icon_url:"https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",attachments:[{mrkdwn_in:["text"],color:$color,author_name:$author,author_link:("http://github.com/" + $author),author_icon:("http://github.com/" + $author + ".png?size=32"),fallback:($repo + " - #" + $build + " " + $status),text:("*" + $repo + "* - #" + $build + " " + $status + " <https://github.com/" + $repo + "/commit/" + $sha + "/checks|(Open)>"),fields:[{value:$commit}]}]}')
         curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" ${{ inputs.webhook-url }}
       shell: bash
 
