@@ -14,9 +14,9 @@ runs:
         export PAYLOAD=$(jq -n \
           --arg commit "$COMMIT_MESSAGE" \
           --arg author ${{ github.actor }} \
-          --arg repo ${{ github.repository }} \
-          --arg workflow ${{ github.workflow }} \
-          --arg branch ${{ github.ref }} \
+          --arg repo "${{ github.repository }}" \
+          --arg workflow "${{ github.workflow }}" \
+          --arg branch "${{ github.ref }}" \
           --arg sha ${{ github.sha }} \
           --arg build ${{ github.run_number }} \
           --arg color ${{ job.status == 'success' && 'good' || 'danger' }} \
